@@ -1,0 +1,130 @@
+$index: calc(1vw + 1vh);
+$transition: transform .75s cubic-bezier(.075, .5, 0, 1);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: releway_f;
+    src: url(../fonts/raleway-regular.woff2);
+}
+@font-face {
+    font-family: releway_f;
+    src: url(../fonts/raleway-black.woff2);
+    font-weight: 900;
+}
+
+body{
+    background-color: #010101;
+    font-family: releway_f, sans-serif;
+    line-height: 1.55;
+}
+.content{
+    will-change: transform;
+}
+.header{
+    position: relative;
+    .layers{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+        .layer{
+           height: 100%;
+           width: 100%;
+           position: absolute;
+           background-size: cover; 
+           background-position: center;
+        }
+        &__header{
+            z-index: 1;
+            transform: translate3d(0, calc(var(--scrollTop) / 2), 0);
+            transition: $transition;
+            text-transform: uppercase;
+            will-change: transform;
+            font-weight: 900;
+            color: #e7e7e0;
+            text-shadow: 0 0 15px #9d822b;
+        }
+        &__title{
+            font-size: calc($index * 2.5);
+            letter-spacing: calc($index / 2.25);
+        }
+        &__caption{
+            font-size: calc($index / 1.175);
+            letter-spacing: calc($index / 3.5);
+            margin-top: calc($index * -1);
+        }
+        &__base{
+            transform: translate3d(0, calc(var(--scrollTop) / 1.6), 0);
+            transition: $transition;
+            z-index: 0;
+            will-change: transform;
+        }
+        &__middle{
+            transform: translate3d(0, calc(var(--scrollTop) / 2.5), 0);
+            transition: $transition;
+            z-index: 2;
+            will-change: transform;
+        }
+        &__front{
+            transform: translate3d(0, calc(var(--scrollTop) / 5.7), 0);
+            transition: $transition;
+            z-index: 2;
+            will-change: transform;
+        }
+    }
+    &::after{
+        content: '';
+        position: absolute;
+        z-index: 99;
+        width: 100%;
+        height: calc($index * 10);
+        background-image: url(../img/ground.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        bottom: calc($index * -4.5);
+    }
+}
+.article{
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #e7e7e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    &__header{
+        text-transform: uppercase;
+        font-size: calc($index * 1.8);
+        letter-spacing: calc($index / 7.5);
+        transform: translate3d(0, calc(var(--scrollTop) / -9.5), 0);
+        transition: $transition;
+        will-change: transform;
+    }
+    &__paragrapf{
+        max-width: calc($index * 30);
+        font-size: calc($index * 0.9);
+        margin-top: calc($index / 1.25);
+        transform: translate3d(0, calc(var(--scrollTop) / -9.5), 0);
+        transition: $transition;
+        will-change: transform;
+    }
+    .copy{
+        position: absolute;
+        bottom: calc($index * 2.5);
+        opacity: .45;
+        font-size: calc($index * 0.75);
+        letter-spacing: calc($index / 37.5);
+    }
+}
